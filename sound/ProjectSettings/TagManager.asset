@@ -7,6 +7,8 @@ TagManager:
   - Graund
   - Enemy
   - Bullet
+  - PanchEnemy
+  - Panch
   layers:
   - Default
   - TransparentFX

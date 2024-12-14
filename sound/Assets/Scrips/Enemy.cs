@@ -5,11 +5,12 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
-    [SerializeField] private AudioSource audioSource;
-    private NewEnemy NewEnemy;
+    private AudioSource audioSource;
+    private Gun gun;
 
     private void Start()
     {
+        audioSource = GameObject.FindWithTag("PanchEnemy").GetComponent<AudioSource>();
         StartCoroutine(MoveToPlayer());
     }
 
@@ -31,20 +32,20 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out bullet _))
         {
             Die();
+            gun.enemyScore++;
+            Debug.Log(gun.enemyScore);
         }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Die();
+        }  
     }
 
     public void Die()
     {
         audioSource.Play();
         GetComponent<Collider2D>().enabled = false;
-        NewEnemy.SpawnEnemys();
-        Invoke(nameof(WaitBeforDie), 1f);
-    }
-
-    private void WaitBeforDie()
-    {
-        Destroy(gameObject);
+        Destroy(gameObject, 1f);
     }
 }
 

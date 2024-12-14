@@ -8,14 +8,13 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private AudioSource shootAudioSource;
-    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] public TextMeshProUGUI healthText;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float leftLimit = -3f;
-    [SerializeField] private float rightLimit = 3f;
-    [SerializeField] private int lives = 3;
-    [SerializeField] private float damageRadius = 2f;
-    private bool isGameOver = false;
-    private bool isHit = false;
+    [SerializeField] private float leftLimit = -7f;
+    [SerializeField] private float rightLimit = 0f;
+    [SerializeField] public int lives = 3;
+    public int enemyScore = 0;
+    private GameController gameController;
 
     private void Start()
     {
@@ -29,24 +28,13 @@ public class Gun : MonoBehaviour
         {
             Shoot();
         }
+    }
 
-        if (isGameOver)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            return;
-        }
-
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, damageRadius);
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("Enemy") && !isHit)
-            {
-                TakeDamage();
-                isHit = true; 
-            }
-        }
-        if (hitColliders.Length == 0)
-        {
-            isHit = false;
+            TakeDamage();
         }
     }
 
@@ -65,21 +53,13 @@ public class Gun : MonoBehaviour
         shootAudioSource.Play(); 
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         lives--;
         healthText.text = $"Health: {lives}";
         if (lives <= 0)
         {
-            GameOver();
-
+            gameController.GameOver();
         }
-    }
-
-    void GameOver()
-    {
-        isGameOver = true;
-        
-        Debug.Log("Game Over!"); 
     }
 }

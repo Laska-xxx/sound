@@ -7,9 +7,15 @@ public class bullet : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private AudioSource shootAudio;
+    private Rigidbody2D rb;
+    private AudioSource panchAudio;
     private float currLifeTime;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        panchAudio = GameObject.FindWithTag("Panch").GetComponent<AudioSource>();
+    }
 
     private void Awake()
     {
@@ -24,9 +30,10 @@ public class bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        shootAudio.Play();
-        Destroy(gameObject);
-    }
+        float x = 0.5f;
+        panchAudio.Play();
+        Destroy(gameObject, x);
 
-    
+
+    }
 }

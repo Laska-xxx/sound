@@ -6,15 +6,23 @@ public class NewEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform enemySpawn;
-    private float spawnTime = 3f;
+    private float spawnTime = 5f;
+    private bool create = true;
 
-    public void SpawnEnemys()
+    private void Update()
     {
-        Invoke(nameof(SpawnEnemy), spawnTime);
+        if (create)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, enemySpawn);
+            StartCoroutine(KDBetweenSpawns());
+
+        }
     }
 
-    private void SpawnEnemy()
+    private IEnumerator KDBetweenSpawns()
     {
-        Instantiate(enemyPrefab,enemySpawn);
+        create = false;
+        yield return new WaitForSeconds(spawnTime);
+        create = true;
     }
 }
