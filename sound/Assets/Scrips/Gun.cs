@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour
         healthText.text = $"Health: {lives}";
         if (lives <= 0)
         {
-            gameController.GameOver();
+            gameController.GameOver(lives, healthText, enemyScore);
         }
     }
 }

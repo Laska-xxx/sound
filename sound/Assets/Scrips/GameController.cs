@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     [Header("GameOver")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Button restartButton;
-    [SerializeField] private TextMeshProUGUI gText;
+    [SerializeField] private TextMeshProUGUI endText;
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private Button pauseButton;
@@ -22,8 +22,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioSource panchSource;
     [SerializeField] private AudioSource panchEnemySource;
     [SerializeField] private AudioSource shootSource;
-
-    private Gun gun = new Gun();
+    private int gunLives;
+    private int enemyScore;
+    private TextMeshProUGUI gunText;
 
     private void Start()
     {
@@ -33,16 +34,21 @@ public class GameController : MonoBehaviour
         applyButton.onClick.AddListener(AudioSettings);
     }
 
-    public void GameOver()
+    public void GameOver(int lives, TextMeshProUGUI text, int score)
     {
+        gunLives = lives;
+        gunText = text;
+        enemyScore = score;
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
-        gText.text = $"¬ы одолели {gun.enemyScore} врагов, но все равно проиграли...";
+        endText.text = $"¬ы одолели {enemyScore} врагов, но все равно проиграли...";
+        return;
     }
     private void Restart()
     {
-        gun.lives = 3;
-        gun.healthText.text = $"Health: {gun.lives}";
+        enemyScore = 0;
+        gunLives = 3;
+        gunText.text = $"Health: {gunLives}";
         Time.timeScale = 1;
         gameOverScreen.SetActive(false);
     }
