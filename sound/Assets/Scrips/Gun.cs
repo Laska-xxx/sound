@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [SerializeField]private GameController gameController;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private AudioSource shootAudioSource;
@@ -14,7 +15,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float rightLimit = 0f;
     [SerializeField] public int lives = 3;
     public int enemyScore = 0;
-    private GameController gameController = new GameController();
+    
 
     private void Start()
     {
@@ -59,7 +60,7 @@ public class Gun : MonoBehaviour
         healthText.text = $"Health: {lives}";
         if (lives <= 0)
         {
-            gameController.GameOver(lives, healthText, enemyScore);
+            gameController.GameOver();
         }
     }
 }

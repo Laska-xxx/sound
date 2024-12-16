@@ -5,12 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
+    [SerializeField] private Gun gun;
     private AudioSource audioSource;
-    private Gun gun = new Gun();
 
     private void Start()
     {
         audioSource = GameObject.FindWithTag("PanchEnemy").GetComponent<AudioSource>();
+        gun = GameObject.FindWithTag("Player").GetComponent<Gun>();
         StartCoroutine(MoveToPlayer());
     }
 
@@ -32,8 +33,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out bullet _))
         {
             Die();
-            gun.enemyScore++;
-            Debug.Log(gun.enemyScore);
+            gun.enemyScore ++;
         }
         if (collision.gameObject.CompareTag("Player"))
         {
