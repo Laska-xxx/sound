@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioSource panchEnemySource;
     [SerializeField] private AudioSource shootSource;
 
-    private Gun gun;
+    private Gun gun = new Gun();
 
     private void Start()
     {

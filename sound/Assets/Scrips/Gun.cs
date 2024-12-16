@@ -14,7 +14,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private float rightLimit = 0f;
     [SerializeField] public int lives = 3;
     public int enemyScore = 0;
-    private GameController gameController;
+    private GameController gameController = new GameController();
 
     private void Start()
     {

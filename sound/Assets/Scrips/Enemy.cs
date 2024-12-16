@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float speed = 2f;
     private AudioSource audioSource;
-    private Gun gun;
+    private Gun gun = new Gun();
 
     private void Start()
     {
