@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        gun = GameObject.FindWithTag("Player").GetComponent<Gun>();
         audioSource = GameObject.FindWithTag("PanchEnemy").GetComponent<AudioSource>();
         StartCoroutine(MoveToPlayer());
     }
@@ -33,7 +34,6 @@ public class Enemy : MonoBehaviour
         {
             Die();
             gun.enemyScore++;
-            Debug.Log(gun.enemyScore);
         }
         if (collision.gameObject.CompareTag("Player"))
         {

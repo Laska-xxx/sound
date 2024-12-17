@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private Gun gun;
     [Header("GameOver")]
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private Button restartButton;
@@ -23,8 +24,6 @@ public class GameController : MonoBehaviour
     [SerializeField] private AudioSource panchEnemySource;
     [SerializeField] private AudioSource shootSource;
 
-    private Gun gun;
-
     private void Start()
     {
         restartButton.onClick.AddListener(Restart);
@@ -37,10 +36,11 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
-        gText.text = $"¬ы одолели {gun.enemyScore} врагов, но все равно проиграли...";
+        gText.text = $"¬ы убили {gun.enemyScore -1} врагов, но все равно проиграли...";
     }
     private void Restart()
     {
+        gun.player.transform.position = gun.playerPos.transform.position;
         gun.lives = 3;
         gun.healthText.text = $"Health: {gun.lives}";
         Time.timeScale = 1;
@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
     }
     private void AudioSettings()
     {
-        bgMusic.mute = toggle.enabled;
+        bgMusic.mute = !toggle.isOn;
         bgMusic.volume = slider.value;
         panchSource.volume = slider.value;
         panchEnemySource.volume = slider.value;

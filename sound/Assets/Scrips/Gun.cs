@@ -5,26 +5,29 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [SerializeField] private GameController gameController;
+    [SerializeField] public GameObject player;
+    [SerializeField] public GameObject playerPos;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private AudioSource shootAudioSource;
     [SerializeField] public TextMeshProUGUI healthText;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float leftLimit = -7f;
-    [SerializeField] private float rightLimit = 0f;
     [SerializeField] public int lives = 3;
+    private Rigidbody2D rb;
     public int enemyScore = 0;
-    private GameController gameController;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        player.transform.position = playerPos.transform.position;
         healthText.text = $"Health: {lives}";
     }
 
     void Update()
     {
         MoveGun();
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0)
         {
             Shoot();
         }
@@ -40,11 +43,8 @@ public class Gun : MonoBehaviour
 
     void MoveGun()
     {
-        float move = Input.GetAxis("Horizontal");
-        Vector3 newPosition = transform.position + Vector3.right * move * moveSpeed * Time.deltaTime;
-        newPosition.x = Mathf.Clamp(newPosition.x, leftLimit, rightLimit);
-        transform.position = newPosition;
-        shootAudioSource.panStereo = transform.position.x / rightLimit;
+        float moveX = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
     }
 
     void Shoot()

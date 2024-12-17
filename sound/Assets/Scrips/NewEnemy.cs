@@ -6,7 +6,7 @@ public class NewEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Transform enemySpawn;
-    private float spawnTime = 5f;
+    private float spawnTime = 3f;
     private bool create = true;
 
     private void Update()
