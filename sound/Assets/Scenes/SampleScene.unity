@@ -735,7 +735,7 @@ AudioSource:
   m_GameObject: {fileID: 318667048}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9163088446838335910, guid: 77e7fd9f64670a64eb9fd7b1c3cd9ca5, type: 2}
   m_audioClip: {fileID: 8300000, guid: 125eeb5320503f94baa38b2ff3ad6d9f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1099,7 +1099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -104.00003, y: -74.80965}
+  m_AnchoredPosition: {x: -104.00006, y: -74.80963}
   m_SizeDelta: {x: 160, y: 96.20001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &479353315
@@ -1724,7 +1724,7 @@ AudioSource:
   m_GameObject: {fileID: 715408926}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9163088446838335910, guid: 77e7fd9f64670a64eb9fd7b1c3cd9ca5, type: 2}
   m_audioClip: {fileID: 8300000, guid: bb00a40e9321aaf4d9fc7e27e4a24982, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -2356,7 +2356,7 @@ AudioSource:
   m_GameObject: {fileID: 979871079}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7064739696112149505, guid: 77e7fd9f64670a64eb9fd7b1c3cd9ca5, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4e6057a9cf02e744682ace042741fef4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2484,7 +2484,7 @@ AudioSource:
   m_GameObject: {fileID: 981672945}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9163088446838335910, guid: 77e7fd9f64670a64eb9fd7b1c3cd9ca5, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7a0bc649135db0244ac457674f0ec06a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3594,10 +3594,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 94577788}
   m_HandleRect: {fileID: 1559461913}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3904,10 +3904,7 @@ MonoBehaviour:
   applyButton: {fileID: 2136646790}
   slider: {fileID: 1802297224}
   toggle: {fileID: 601520582}
-  bgMusic: {fileID: 979871081}
-  panchSource: {fileID: 715408928}
-  panchEnemySource: {fileID: 318667050}
-  shootSource: {fileID: 981672947}
+  mixer: {fileID: 24100000, guid: 77e7fd9f64670a64eb9fd7b1c3cd9ca5, type: 2}
 --- !u!4 &1850068566
 Transform:
   m_ObjectHideFlags: 0

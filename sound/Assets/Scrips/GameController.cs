@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour
 {
@@ -19,10 +20,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Toggle toggle;
     [Header("Sounds")]
-    [SerializeField] private AudioSource bgMusic;
-    [SerializeField] private AudioSource panchSource;
-    [SerializeField] private AudioSource panchEnemySource;
-    [SerializeField] private AudioSource shootSource;
+    [SerializeField] private AudioMixer mixer;
 
     private void Start()
     {
@@ -58,10 +56,12 @@ public class GameController : MonoBehaviour
     }
     private void AudioSettings()
     {
-        bgMusic.mute = !toggle.isOn;
-        bgMusic.volume = slider.value;
-        panchSource.volume = slider.value;
-        panchEnemySource.volume = slider.value;
-        shootSource.volume = slider.value;
+        float volume = slider.value;
+        mixer.SetFloat("masterSound", Mathf.Log10(volume) * 20);
+
+        if (!toggle.isOn)
+            mixer.SetFloat("Bg", -80f);
+        else
+            mixer.SetFloat("Bg", Mathf.Log10(volume) * 20);
     }
 }

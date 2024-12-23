@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         MoveGun();
-        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0)
+        if (Input.GetKeyDown(KeyCode.E) && Time.timeScale != 0)
         {
             Shoot();
         }
